@@ -1,10 +1,8 @@
-## Kontax Contact Manager
+# Kontax Contact Manager
 
-# COP4331 - POOSD
+COP4331 - POOSD
 
-Small Project Assignment
-
-Team:
+## Team:
 
 Project Manager: Keilvin Tran
 
