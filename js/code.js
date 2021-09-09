@@ -17,7 +17,6 @@ function doLogin() {
   document.getElementById("loginResult").innerHTML = "";
 
   var tmp = { login: login, password: hash };
-  //	var tmp = {login:login,password:hash};
   var jsonPayload = JSON.stringify(tmp);
 
   var url = urlBase + "/Login." + extension;
@@ -64,15 +63,13 @@ function doRegister() {
 
   // if passwords don't match when registering
   if (password.localeCompare(confirmPassword) !== 0) {
-    // document.getElementById("loginResult").innerHTML = err.message;
     alert("Passwords Don't Match");
     return;
   }
   var hash = md5(password);
 
   document.getElementById("loginResult").innerHTML = "";
-  // alert(loginName);
-  //   var tmp = { login: login, password: password };
+
   var tmp = {
     firstName: firstName,
     lastName: lastName,
@@ -93,8 +90,6 @@ function doRegister() {
         userId = jsonObject.id;
 
         if (userId > 0) {
-          // document.getElementById("loginResult").innerHTML =
-          //   "User Already Registered With These Credentials";
           alert("User Already Registered With These Credentials");
           return;
         }
@@ -102,7 +97,6 @@ function doRegister() {
         firstName = jsonObject.firstName;
         lastName = jsonObject.lastName;
         loginName = jsonObject.loginName;
-        // password = jsonObject.password;
 
         saveCookie();
 
