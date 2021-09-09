@@ -26,18 +26,13 @@
 		}
 		else
 		{
-			// returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
-			// returnWithError("No Records Found");
 			// INSERT USER INTO DB
-			$conn2 = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+			$conn2 = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331"); 	
 			$stmt2 = $conn2->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt2->bind_param("ssss", $firstName, $lastName, $loginName, $password);
 			$stmt2->execute();
-			// $stmt2->close();
-			// $conn2->close();
-			// $conn->close();
-			returnWithInfo( $firstName, $lastName, $loginName );
-			// returnWithError("");			
+			// return with info
+			returnWithInfo( $firstName, $lastName, $loginName );	
 		}
 		$stmt->close();
 		$conn->close();
