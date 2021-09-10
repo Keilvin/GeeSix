@@ -5,7 +5,7 @@
 	
 	$id = 0;
 	$firstName = "";
-	$lastName = "";
+	$lastName = ""; 
 
 	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331"); 	
 	if( $conn->connect_error )
@@ -14,20 +14,19 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt = $conn->prepare("SELECT firstName,lastName,userName,id FROM users WHERE userName=? AND password =?");
+		$stmt->bind_param("ss", $inData["userName"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			returnWithInfo( $row['firstName'], $row['lastName'], $row['id'] );
 		}
 		else
 		{
 			returnWithError("No Records Found");
 		}
-
 		$stmt->close();
 		$conn->close();
 	}

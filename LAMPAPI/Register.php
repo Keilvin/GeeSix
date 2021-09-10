@@ -5,8 +5,9 @@
 	$id = 0;
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
-	$loginName = $inData["loginName"];
+	$userName = $inData["userName"];
 	$password = $inData["password"];
+	$email = $inData["email"];
 
 	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331"); 	
 	if( $conn->connect_error )
@@ -15,24 +16,24 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=?");
-		$stmt->bind_param("s", $inData["loginName"]);
+		$stmt = $conn->prepare("SELECT firstName,lastName,userName FROM users WHERE userName=?");
+		$stmt->bind_param("s", $userName);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			returnWithInfo( $row['firstName'], $row['lastName'], $row['userName'] );
 		}
 		else
 		{
 			// INSERT USER INTO DB
 			$conn2 = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331"); 	
-			$stmt2 = $conn2->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
-			$stmt2->bind_param("ssss", $firstName, $lastName, $loginName, $password);
+			$stmt2 = $conn2->prepare("INSERT into users (firstName,lastName,userName,password,email) VALUES(?,?,?,?,?)");
+			$stmt2->bind_param("sssss", $firstName, $lastName, $userName, $password, $email);
 			$stmt2->execute();
 			// return with info
-			returnWithInfo( $firstName, $lastName, $loginName );	
+			returnWithInfo( $firstName, $lastName, $userName );	
 		}
 		$stmt->close();
 		$conn->close();
@@ -51,13 +52,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"loginName":"","firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"userName":"","firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $loginName )
+	function returnWithInfo( $firstName, $lastName, $userName )
 	{
-		$retValue = '{"loginName":"' . $loginName . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"userName":"' . $userName . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

@@ -4,19 +4,21 @@ var extension = "php";
 var userId = 0;
 var firstName = "";
 var lastName = "";
+var email = "";
+var userName = "";
 
 function doLogin() {
   userId = 0;
   firstName = "";
   lastName = "";
 
-  var login = document.getElementById("loginName").value;
-  var password = document.getElementById("loginPassword").value;
+  var login = document.getElementById("userName").value;
+  var password = document.getElementById("password").value;
   var hash = md5(password);
 
   document.getElementById("loginResult").innerHTML = "";
 
-  var tmp = { login: login, password: hash };
+  var tmp = { userName: login, password: hash };
   var jsonPayload = JSON.stringify(tmp);
 
   var url = urlBase + "/Login." + extension;
@@ -29,7 +31,7 @@ function doLogin() {
       if (this.readyState == 4 && this.status == 200) {
         var jsonObject = JSON.parse(xhr.responseText);
         userId = jsonObject.id;
-
+        // alert(userId);
         if (userId < 1) {
           document.getElementById("loginResult").innerHTML =
             "User/Password combination incorrect";
@@ -40,8 +42,8 @@ function doLogin() {
         lastName = jsonObject.lastName;
 
         saveCookie();
-
-        window.location.href = "color.html";
+        // alert(userId);
+        window.location.href = "contacts.html";
       }
     };
     xhr.send(jsonPayload);
@@ -57,7 +59,8 @@ function doRegister() {
 
   firstName = document.getElementById("firstName").value;
   lastName = document.getElementById("lastName").value;
-  var loginName = document.getElementById("loginName").value;
+  var userName = document.getElementById("userName").value;
+  var email = document.getElementById("email").value;
   var password = document.getElementById("loginPassword").value;
   var confirmPassword = document.getElementById("confirmLoginPassword").value;
 
@@ -73,7 +76,8 @@ function doRegister() {
   var tmp = {
     firstName: firstName,
     lastName: lastName,
-    loginName: loginName,
+    userName: userName,
+    email: email,
     password: hash,
   };
   var jsonPayload = JSON.stringify(tmp);
@@ -96,11 +100,12 @@ function doRegister() {
 
         firstName = jsonObject.firstName;
         lastName = jsonObject.lastName;
-        loginName = jsonObject.loginName;
+        userName = jsonObject.userName;
+        email = jsonObject.email;
 
         saveCookie();
 
-        window.location.href = "index.html";
+        window.location.href = "login.html";
       }
     };
     xhr.send(jsonPayload);
@@ -114,9 +119,11 @@ function saveCookie() {
   var date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
   document.cookie =
-    "loginName=" +
-    loginName +
-    "firstName=" +
+    "userName=" +
+    userName +
+    "email=" +
+    email +
+    ",firstName=" +
     firstName +
     ",lastName=" +
     lastName +
@@ -139,8 +146,10 @@ function readCookie() {
       lastName = tokens[1];
     } else if (tokens[0] == "userId") {
       userId = parseInt(tokens[1].trim());
-    } else if (tokens[0] == "loginName") {
-      loginName = tokens[1];
+    } else if (tokens[0] == "userName") {
+      userName = tokens[1];
+    } else if (tokens[0] == "email") {
+      email = tokens[1];
     }
   }
 
@@ -160,14 +169,22 @@ function doLogout() {
   window.location.href = "index.html";
 }
 
-function addColor() {
-  var newColor = document.getElementById("colorText").value;
-  document.getElementById("colorAddResult").innerHTML = "";
-
-  var tmp = { color: newColor, userId, userId };
+function addContact() {
+  var first = document.getElementById("firstName").value;
+  var last = document.getElementById("lastName").value;
+  var numberr = document.getElementById("number").value;
+  // document.getElementById("colorAddResult").innerHTML = "";
+  // alert(first);
+  // alert(userId);
+  var tmp = {
+    firstName: first,
+    lastName: last,
+    number: numberr,
+    userId: userId,
+  };
   var jsonPayload = JSON.stringify(tmp);
 
-  var url = urlBase + "/AddColor." + extension;
+  var url = urlBase + "/AddContact." + extension;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -175,26 +192,26 @@ function addColor() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("colorAddResult").innerHTML =
-          "Color has been added";
+        document.getElementById("contactAddResult").innerHTML =
+          "Contact has been added";
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    document.getElementById("colorAddResult").innerHTML = err.message;
+    document.getElementById("contactAddResult").innerHTML = err.message;
   }
 }
 
-function searchColor() {
-  var srch = document.getElementById("searchText").value;
-  document.getElementById("colorSearchResult").innerHTML = "";
+function searchContacts() {
+  var srch = document.getElementById("search").value;
+  document.getElementById("contactSearchResult").innerHTML = "";
 
   var colorList = "";
 
   var tmp = { search: srch, userId: userId };
   var jsonPayload = JSON.stringify(tmp);
 
-  var url = urlBase + "/SearchColors." + extension;
+  var url = urlBase + "/Search." + extension;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -202,8 +219,8 @@ function searchColor() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("colorSearchResult").innerHTML =
-          "Color(s) has been retrieved";
+        document.getElementById("contactSearchResult").innerHTML =
+          "Contact(s) has been retrieved";
         var jsonObject = JSON.parse(xhr.responseText);
 
         for (var i = 0; i < jsonObject.results.length; i++) {
@@ -218,6 +235,6 @@ function searchColor() {
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    document.getElementById("colorSearchResult").innerHTML = err.message;
+    document.getElementById("contactSearchResult").innerHTML = err.message;
   }
 }
