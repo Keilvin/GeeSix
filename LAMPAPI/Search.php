@@ -1,18 +1,18 @@
 <?php
-
+	// $userID = "6";
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "cop4331");
+	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select userName from contacts where userName like ? and UserID=?");
+		$stmt = $conn->prepare("SELECT firstName,lastName,number FROM contacts WHERE concat_ws(' ', firstName,lastName,number) LIKE ? AND userid=?");
 		$contactName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ss", $contactName, $inData["userId"]);
 		$stmt->execute();
@@ -26,7 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["userName"] . '"';
+			$searchResults .= '"' . $row["firstName"] . " - " . $row["lastName"] . " - " .$row["number"] . '"';
 		}
 		
 		if( $searchCount == 0 )
