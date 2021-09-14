@@ -3,7 +3,7 @@
 
 	$inData = getRequestInfo();
 
-	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "cop4331");
+	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331");
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -14,7 +14,8 @@
 		$sql = "DELETE FROM cop4331 WHERE username = $inData["username"]";
 
 		if ($conn->query($sql) === TRUE) {
-		  echo "Record deleted successfully";
+		  // echo "Record deleted successfully";
+			returnWithInfo( $inData["username"]);
 		} else {
 		  echo "Error deleting record: " . $conn->error;
 		}
@@ -39,9 +40,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo( $username )
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"username":' . $username'}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
