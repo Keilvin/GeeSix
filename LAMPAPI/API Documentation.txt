@@ -58,6 +58,29 @@ paths:
           description: OK
         404:
           description: User Not Found
+          
+    /Search.php:
+    post:
+      tags:
+      - Users
+      summary: Searces in to Kontax
+      operationId: doLogin
+      description: Logs in to Kontax account
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: Login
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
   
   # /AddColor.php:
   #   post:
@@ -127,6 +150,15 @@ definitions:
     - username 
     properties:
       Delete:
+        type: string
+        example: "RickL"
+        
+  Search:
+    type: object
+    required:
+    - Searchname 
+    properties:
+      Search:
         type: string
         example: "RickL"
         
