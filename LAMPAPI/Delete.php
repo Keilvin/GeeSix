@@ -45,5 +45,6 @@
 		$retValue = '{"username":' . $username'}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
 ?>
+
+<!-- test stuff added -->
