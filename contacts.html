@@ -27,6 +27,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    
 
     <title>Contacts Page</title>
   </head>
@@ -75,6 +76,13 @@
                     id="search"
                     name="search"
                   />
+                  <script type="text/javascript">
+                      document.addEventListener('keypress', logKey);
+              
+                      function logKey(e) {
+                        searchContacts();
+                      }
+                  </script>
                 </div>
                 <div>
                   <button type="submit" class="btn btn-primary" onclick="searchContacts();">Search</button>
@@ -90,13 +98,15 @@
                     name="firstName"
                     placeholder="First Name"
                   />
+                  <br/>
                   <input
                     type="text"
                     class="form-control"
                     id="lastName"
                     name="lastName"
                     placeholder="Last Name"
-                  />   
+                  />  
+                  <br/> 
                   <input
                     type="text"
                     class="form-control"
@@ -104,12 +114,10 @@
                     name="number"
                     placeholder="Number"
                   />   
+                  <br/>
                   <button type="submit" class="btn btn-primary" onclick="addContact();">Add Contact</button>
                   <span id="contactAddResult"></span>                                 
-                </div>
-                <div>
-
-                </div>               
+                </div>              
           </div>
             
         </div>
