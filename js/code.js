@@ -173,7 +173,7 @@ function addContact() {
   var first = document.getElementById("firstName").value;
   var last = document.getElementById("lastName").value;
   var numberr = document.getElementById("number").value;
-  // document.getElementById("colorAddResult").innerHTML = "";
+  document.getElementById("added").innerHTML = "";
   // alert(first);
   // alert(userId);
   var tmp = {
@@ -192,13 +192,12 @@ function addContact() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("contactAddResult").innerHTML =
-          "Contact has been added";
+        document.getElementById("added").innerHTML = "Contact has been added";
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    document.getElementById("contactAddResult").innerHTML = err.message;
+    document.getElementById("added").innerHTML = err.message;
   }
 }
 
