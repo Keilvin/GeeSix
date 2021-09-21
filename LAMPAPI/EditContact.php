@@ -1,12 +1,16 @@
+
 <?php
 //clickable from search that allows to edit information
 	// $userID = "6";
 	$inData = getRequestInfo();
-
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$number = $inData["number"];
-	$username = $inData["username"];
+	$firstName = "";
+	$lastName = "";
+	$number = "";
+	$id = "";
+	$firstName = $inData["firstNameEdit"];
+	$lastName = $inData["lastNameEdit"];
+	$number = $inData["numberEdit"];
+	$id = $inData["id"];
 
 	//front end - confirm if user wants to make change to account
 	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331");
@@ -16,12 +20,26 @@
 	} 
 	else
 	{
-
-        $stmt = $conn->prepare("UPDATE firstName,lastName,number FROM contacts WHERE username=? and userid=?");
-		$stmt->bind_param("ss", $username, $inData["userId"]);
-		$stmt->execute();
+        if($firstName) {
+            // update firstName
+            $stmt = $conn->prepare("UPDATE contacts SET firstName='$firstName' WHERE id='$id'");
+            $stmt->execute();
+        } 
+        if($lastName) {
+            // update lastName
+            $stmt = $conn->prepare("UPDATE contacts SET lastName='$lastName' WHERE id='$id'");
+            $stmt->execute();
+        } 
+        if($number) {
+            // update number
+            $stmt = $conn->prepare("UPDATE contacts SET number='$number' WHERE id='$id'");
+            $stmt->execute();
+        }                      
+        // $stmt = $conn->prepare("UPDATE contacts SET firstName='$firstName',lastName='$lastName',number='$number' WHERE id='$id'");
+		// $stmt->bind_param("s", $id);
+		// $stmt->execute();
 		
-		$result = $stmt->get_result();
+		// $result = $stmt->get_result();
 		
 		returnWithInfo($firstname, $lastname, $number);
 
