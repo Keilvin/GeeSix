@@ -3,10 +3,11 @@
 	// $userID = "6";
 	$inData = getRequestInfo();
 
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$number = $inData["number"];
-	$username = $inData["username"];
+	// $firstName = $inData["firstName"];
+	// $lastName = $inData["lastName"];
+	// $number = $inData["number"];
+	// $username = $inData["username"];
+    $id = $inData["id"];
 
 	//front end - confirm if user wants to make change to account
 	$conn = new mysqli("localhost", "yojimbo", "WeLoveCOP4331", "COP4331");
@@ -17,14 +18,13 @@
 	else
 	{
 
-        $stmt = $conn->prepare("DELETE firstName,lastName,number FROM contacts WHERE firstName=? and userid=?");
-		$stmt->bind_param("ss", $username, $inData["userId"]);
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE id='$id'");
+		// $stmt->bind_param("s", $id);
 		$stmt->execute();
 		
-		$result = $stmt->get_result();
+		// $result = $stmt->get_result();
 		
-		returnWithInfo($firstname, $lastname, $number);
-
+		returnWithInfo($id);
 
 		$stmt->close();
 		$conn->close();
@@ -47,9 +47,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	//send back firstname lastname number
-	function returnWithInfo( $firstName, $lastName, $number )
+	function returnWithInfo( $id)
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","number":"' . $number . '","error":""}';
+		$retValue = '{"id":"' . $id . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
