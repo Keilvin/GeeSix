@@ -121,7 +121,7 @@ function saveCookie() {
   document.cookie =
     "userName=" +
     userName +
-    "email=" +
+    ",email=" +
     email +
     ",firstName=" +
     firstName +
@@ -154,7 +154,7 @@ function readCookie() {
   }
 
   if (userId < 0) {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
   } else {
     document.getElementById("userName").innerHTML =
       "Logged in as " + firstName + " " + lastName;
@@ -202,6 +202,14 @@ function addContact() {
   }
 }
 
+var contactID = 0;
+function setContactID(id) {
+  contactID = id;
+}
+function getContactID() {
+  return contactID;
+}
+
 function searchContacts() {
   var srch = document.getElementById("search").value;
   document.getElementById("contactSearchResult").innerHTML = "";
@@ -220,21 +228,192 @@ function searchContacts() {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("contactSearchResult").innerHTML =
-          "Contact(s) has been retrieved";
+          "Contacts have been retrieved";
         var jsonObject = JSON.parse(xhr.responseText);
-
+        colorList += "<table class='table'>\n";
+        colorList += "<thead>\n";
+        colorList += "<tr>\n";
+        colorList += "<th scope='col'></th>\n";
+        colorList += "<th scope='col'>First Name</th>\n";
+        colorList += "<th scope='col'>Last Name</th>\n";
+        colorList += "<th scope='col'>Number</th>\n";
+        colorList += "</tr>\n";
+        colorList += "</thead>\n";
+        colorList += "<tbody>\n";
         for (var i = 0; i < jsonObject.results.length; i++) {
+          colorList += "<tr>\n";
+          colorList += "<td>";
+          colorList += "<button id='";
           colorList += jsonObject.results[i];
-          if (i < jsonObject.results.length - 1) {
-            colorList += "<br />\r\n";
-          }
-        }
+          colorList += "'";
+          colorList +=
+            "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
+          colorList += jsonObject.results[i];
+          colorList += ");'>";
+          colorList += "Edit";
+          colorList += "</button>\n";
+          colorList += "<span>";
+          colorList += "<button id='";
+          colorList += jsonObject.results[i];
+          colorList += "'";
+          colorList +=
+            "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
+          colorList += jsonObject.results[i];
+          i++;
+          colorList += ");'>";
+          colorList += "Delete";
+          colorList += "</button>\n";
+          colorList += "</span>";
+          colorList +=
+            "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
+          colorList += "<div class='modal-dialog'>\n";
+          colorList += "<div class='modal-content'>\n";
+          colorList += "<div class='modal-header'>\n";
+          colorList +=
+            "<h5 class='modal-title' id='exampleModalLabel'>Edit Contact</h5>\n";
+          colorList +=
+            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
+          colorList += "</div>\n";
+          colorList += "<div class='modal-body'>\n";
+          colorList += "<div class='mb-1'>\n";
+          colorList +=
+            "<label for='firstName' class='form-label'>Add Contacts</label>\n";
+          colorList +=
+            "<input type='text' class='form-control' id='firstNameEdit' name='firstNameEdit' placeholder='Edit First Name'/>\n";
+          colorList +=
+            "<input type='text' class='form-control' id='lastNameEdit' name='lastNameEdit' placeholder='Edit Last Name'/>\n";
+          colorList +=
+            "<input type='text' class='form-control' id='numberEdit' name='numberEdit' placeholder='Edit Number'/>\n";
+          colorList += "<span id='contactAddResult'></span>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+          colorList += "<div class='modal-footer'>\n";
+          colorList +=
+            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
+          colorList +=
+            "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='editContact(";
+          colorList += ");' >Save changes</button>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
 
+          colorList +=
+            "<div class='modal fade' id='exampleModal2' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
+          colorList += "<div class='modal-dialog'>\n";
+          colorList += "<div class='modal-content'>\n";
+          colorList += "<div class='modal-header'>\n";
+          colorList +=
+            "<h5 class='modal-title' id='exampleModalLabel2'>Delete Contact</h5>\n";
+          colorList +=
+            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
+          colorList += "</div>\n";
+          colorList += "<div class='modal-body'>\n";
+          colorList += "<p>Click Delete User To Confirm Deletion</p>";
+          colorList += "</div>\n";
+          colorList += "<div class='modal-footer'>\n";
+          colorList +=
+            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
+          colorList +=
+            "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='deleteContact(";
+          colorList += ");' >Delete User</button>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+          colorList += "</div>\n";
+
+          colorList += "</td>\n";
+          colorList += "<td>";
+          colorList += jsonObject.results[i];
+          colorList += "</td>\n";
+          i++;
+          colorList += "<td>";
+          colorList += jsonObject.results[i];
+          colorList += "</td>\n";
+          i++;
+          colorList += "<td>";
+          colorList += jsonObject.results[i];
+          colorList += "</td>\n";
+          colorList += "</tr>\n";
+          // if (i < jsonObject.results.length - 1) {
+          //   colorList += "<br />\r\n";
+          // }
+        }
+        colorList += "</tbody>\n";
+        colorList += "</table>\n";
+        // saveCookie();
         document.getElementsByTagName("p")[0].innerHTML = colorList;
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
     document.getElementById("contactSearchResult").innerHTML = err.message;
+  }
+}
+
+function editContact() {
+  var id = getContactID();
+  var first = document.getElementById("firstNameEdit").value;
+  var last = document.getElementById("lastNameEdit").value;
+  var numberr = document.getElementById("numberEdit").value;
+  // document.getElementById("colorAddResult").innerHTML = "";
+  // alert(first);
+  // alert(userId);
+  var tmp = {
+    id: id,
+    firstNameEdit: first,
+    lastNameEdit: last,
+    numberEdit: numberr,
+  };
+  var jsonPayload = JSON.stringify(tmp);
+
+  var url = urlBase + "/EditContact." + extension;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("contactEditResult").innerHTML =
+          "Contact has been edited";
+      }
+      searchContacts();
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    document.getElementById("contactEditResult").innerHTML = err.message;
+  }
+}
+
+function deleteContact() {
+  var id = getContactID();
+  // var first = document.getElementById("firstNameEdit").value;
+  // var last = document.getElementById("lastNameEdit").value;
+  // var numberr = document.getElementById("numberEdit").value;
+  // document.getElementById("colorAddResult").innerHTML = "";
+  // alert(first);
+  // alert(userId);
+  var tmp = {
+    id: id,
+  };
+  var jsonPayload = JSON.stringify(tmp);
+
+  var url = urlBase + "/DeleteContact." + extension;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("contactDeleteResult").innerHTML =
+          "Contact has been deleted";
+      }
+      searchContacts();
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    document.getElementById("contactDeleteResult").innerHTML = err.message;
   }
 }
