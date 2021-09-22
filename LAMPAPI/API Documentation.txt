@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   title: Kontax
   # put the contact info for your development or API team
-  contact:
-    email: Richard.Leinecker@ucf.edu
+  # contact:
+  #   email: Richard.Leinecker@ucf.edu
 
   license:
     name: Apache 2.0
@@ -16,7 +16,7 @@ paths:
   /Login.php:
     post:
       tags:
-      - Users
+      - Login
       summary: Logs in to Kontax
       operationId: doLogin
       description: Logs in to Kontax account
@@ -34,166 +34,175 @@ paths:
         200:
           description: OK
         404:
-          description: URL Not Found
-          
-  /Delete.php:
+          description: URL Not Foun
+  /AddContact.php:
     post:
       tags:
-      - Users
-      summary: Deletes a contact
-      # operationId: doLogin
-      # description: Logs in to Kontax account
-      consumes:
-      - application/json
-      # produces:
-      # - application/json
-      parameters:
-      - in: body
-        name: DeleteItem
-        description: Delete contact
-        schema:
-          $ref: '#/definitions/Delete'
-      responses:
-        200:
-          description: OK
-        404:
-          description: User Not Found
-          
-    /Search.php:
-    post:
-      tags:
-      - Users
-      summary: Searces in to Kontax
-      operationId: doLogin
-      description: Logs in to Kontax account
+      - AddContact
+      summary: Adds a contact
+      operationId: doAddContact
+      description: Adds a contact into the database
       consumes:
       - application/json
       produces:
       - application/json
       parameters:
       - in: body
-        name: loginItem
-        description: Login
+        name: AddContactItem
+        description: AddContact
         schema:
-          $ref: '#/definitions/Login'
+          $ref: '#/definitions/AddContact'
       responses:
         200:
           description: OK
         404:
           description: URL Not Found
-  
-  # /AddColor.php:
-  #   post:
-  #     tags:
-  #     - Colors
-  #     summary: Adds a color
-  #     operationId: addColor
-  #     description: Adds a color to the color app database
-  #     consumes:
-  #     - application/json
-  #     produces:
-  #     - application/json
-  #     parameters:
-  #     - in: body
-  #       name: colorItem
-  #       description: Color
-  #       schema:
-  #         $ref: '#/definitions/Color'
-  #     responses:
-  #       200:
-  #         description: OK
-  #       404:
-  #         description: URL Not Found   
-          
-  # /SearchColors.php:
-  #   post:
-  #     tags:
-  #     - Search
-  #     summary: Searches colors
-  #     operationId: searchColor
-  #     description: Searches colors from the color app database
-  #     consumes:
-  #     - application/json
-  #     produces:
-  #     - application/json
-  #     parameters:
-  #     - in: body
-  #       name: searchItem
-  #       description: Color Search
-  #       schema:
-  #         $ref: '#/definitions/Search'
-  #     responses:
-  #       200:
-  #         description: OK
-  #       404:
-  #         description: URL Not Found
-      
-
-
+  /DeleteContact.php:
+    post:
+      tags:
+      - DeleteContact
+      summary: Deletes a contact
+      operationId: doDeleteContact
+      description: Deletes a contact into the database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: DeleteContactItem
+        description: DeleteContact
+        schema:
+          $ref: '#/definitions/DeleteContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /EditContact.php:
+    post:
+      tags:
+      - EditContact
+      summary: edits a selected contact
+      operationId: doEditContact
+      description: edits a selected contact in the database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: EditContactItem
+        description: EditContact
+        schema:
+          $ref: '#/definitions/EditContact'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /Search.php:
+    post:
+      tags:
+      - Search
+      summary: Search all contacts
+      operationId: Search
+      description: Search all contacts in the database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: SearchItem
+        description: AddContact
+        schema:
+          $ref: '#/definitions/Search'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
 definitions:
   Login:
     type: object
     required:
-    - login
+    - userName
     - password
     properties:
-      login:
+      userName:
         type: string
-        example: "RickL"
+        example: "userName"
       password:
         type: string
-        example: secret
+        example: "md5Hash(password)"
         
-  Delete:
+  AddContact:
     type: object
     required:
-    - username 
+    - firstName
+    - lastName
+    - number
+    - userId
     properties:
-      Delete:
+      firstName:
         type: string
-        example: "RickL"
+        example: "first name"
+      lastName:
+        type: string
+        example: "last name"
+      number:
+        type: integer
+        example: uNumber
+      userId:
+        type: string
+        example: "16"
+        
+  DeleteContact:
+    type: object
+    required:
+    - username
+    properties:
+      id:
+        type: integer
+        example: "id to be deleted"
+        
+  EditContact:
+    type: object
+    required:
+    - firstNameEdit
+    - lastNameEdit
+    - numberEdit
+    - id
+    properties:
+      firstNameEdit:
+        type: string
+        example: "edit first name"
+      lastNameEdit:
+        type: string
+        example: "edit last name"
+      numberEdit:
+        type: string
+        example: "edit phone number"
+      id:
+        type: string
+        example: "contact to be edited ID"
         
   Search:
     type: object
     required:
-    - Searchname 
+    - search
+    - userId
     properties:
-      Search:
+      search:
         type: string
-        example: "RickL"
+        example: "search"
+      userId:
+        type: string
+        example: "id of account searching"
         
-  # Color:
-  #   type: object
-  #   required:
-  #   - userId
-  #   - color
-  #   properties:
-  #     userId:
-  #       type: integer
-  #       example: 1
-  #     color:
-  #       type: string
-  #       example: "Blue Green"
-  # Search:
-  #   type: object
-  #   required:
-  #   - userId
-  #   - search
-  #   properties:
-  #     userId:
-  #       type: integer
-  #       example: 1
-  #     search:
-  #       type: string
-  #       example: "bl"
-  
-# host: 165.232.156.156
-# basePath: /LAMPAPI
-# schemes:
-# - http
-# Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-basePath: /TaylorOLaird/Search/1.0.0
+host: 165.232.156.156
+basePath: /LAMPAPI
 schemes:
  - https
  - http
