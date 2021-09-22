@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   title: Kontax
   # put the contact info for your development or API team
-  # contact:
-  #   email: Richard.Leinecker@ucf.edu
+  contact:
+    email: taylorolaird@knights.ucf.edu
 
   license:
     name: Apache 2.0
@@ -39,7 +39,7 @@ paths:
   /AddContact.php:
     post:
       tags:
-      - AddContact
+      - Modifying Contacts
       summary: Adds a contact
       operationId: doAddContact
       description: Adds a contact into the database
@@ -62,7 +62,7 @@ paths:
   /DeleteContact.php:
     post:
       tags:
-      - DeleteContact
+      - Modifying Contacts
       summary: Deletes a contact
       operationId: doDeleteContact
       description: Deletes a contact into the database
@@ -85,7 +85,7 @@ paths:
   /EditContact.php:
     post:
       tags:
-      - EditContact
+      - Modifying Contacts
       summary: edits a selected contact
       operationId: doEditContact
       description: edits a selected contact in the database
@@ -108,7 +108,7 @@ paths:
   /Search.php:
     post:
       tags:
-      - Modifying Contacts
+      - Search
       summary: Search all contacts
       operationId: Search
       description: Search all contacts in the database
