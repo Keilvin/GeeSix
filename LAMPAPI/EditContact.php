@@ -24,7 +24,7 @@
             // update firstName
             $stmt = $conn->prepare("UPDATE contacts SET firstName='$firstName' WHERE id='$id'");
             $stmt->execute();
-        } 
+        }
         if($lastName) {
             // update lastName
             $stmt = $conn->prepare("UPDATE contacts SET lastName='$lastName' WHERE id='$id'");
