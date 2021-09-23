@@ -7,6 +7,27 @@ var lastName = "";
 var email = "";
 var userName = "";
 
+autosearch = 1;
+function turnAutoSearchOff() {
+  autosearch = 0;
+  document.removeEventListener("keypress", logKey);
+}
+function turnAutoSearchOn() {
+  autosearch = 1;
+  document.addEventListener("keypress", logKey);
+}
+
+function getAutoSearchState() {
+  return autosearch;
+}
+
+if (getAutoSearchState() === 1) {
+  document.addEventListener("keypress", logKey);
+  function logKey(e) {
+    searchContacts();
+  }
+}
+
 function doLogin() {
   userId = 0;
   firstName = "";
@@ -43,6 +64,7 @@ function doLogin() {
 
         saveCookie();
         // alert(userId);
+        turnAutoSearchOn();
         window.location.href = "contacts.html";
       }
     };
@@ -284,7 +306,7 @@ function searchContacts() {
             colorList +=
               "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
             colorList += jsonObject.results[i];
-            colorList += ");'>";
+            colorList += ");turnAutoSearchOff();'>";
             colorList += "Edit";
             colorList += "</button>\n";
             colorList += "<span>";
@@ -327,7 +349,7 @@ function searchContacts() {
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
               "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='editContact(";
-            colorList += ");' >Save changes</button>\n";
+            colorList += ");turnAutoSearchOn();' >Save changes</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
@@ -433,7 +455,7 @@ function searchContacts2() {
             colorList +=
               "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
             colorList += jsonObject.results[i];
-            colorList += ");'>";
+            colorList += ");turnAutoSearchOff();'>";
             colorList += "Edit";
             colorList += "</button>\n";
             colorList += "<span>";
@@ -476,7 +498,7 @@ function searchContacts2() {
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
               "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='editContact(";
-            colorList += ");' >Save changes</button>\n";
+            colorList += ");turnAutoSearchOn();' >Save changes</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
