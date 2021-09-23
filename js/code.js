@@ -548,21 +548,54 @@ function editContact() {
   var first = document.getElementById("firstNameEdit").value;
   var last = document.getElementById("lastNameEdit").value;
   var numberr = document.getElementById("numberEdit").value;
-  // var sendSearch = "";
-  // sendSearch += first;
-  // sendSearch += " ";
-  // sendSearch += last;
-  // sendSearch += " ";
-  // sendSearch += numberr;
-  // setSearch(sendSearch);
 
-  if (first) {
-    setSearch(first);
-  } else if (last) {
-    setSearch(last);
-  } else if (numberr) {
-    setSearch(numberr);
+  var tmp1 = {
+    id: id,
+  };
+  var jsonPayload1 = JSON.stringify(tmp1);
+
+  var url1 = urlBase + "/SearchAfterEdit." + extension;
+
+  var xhr1 = new XMLHttpRequest();
+  xhr1.open("POST", url1, true);
+  xhr1.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr1.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        // document.getElementById("contactEditResult").innerHTML =
+        //   "Contact has been edited";
+        var jsonObject1 = JSON.parse(xhr1.responseText);
+        // searchContacts2();
+        if (first === "") {
+          first = jsonObject1.results[1];
+        }
+        if (last === "") {
+          last = jsonObject1.results[2];
+        }
+        if (numberr === "") {
+          number = jsonObject1.results[3];
+        }
+        var sendSearch = "";
+        sendSearch += first;
+        sendSearch += " ";
+        sendSearch += last;
+        sendSearch += " ";
+        sendSearch += numberr;
+        setSearch(sendSearch);
+      }
+    };
+    xhr1.send(jsonPayload1);
+  } catch (err) {
+    // document.getElementById("contactEditResult").innerHTML = err.message;
   }
+
+  // if (first === "") {
+  //   // setSearch(first);
+  // } else if (last === "") {
+  //   // setSearch(last);
+  // } else if (numberr === "") {
+  //   // setSearch(numberr);
+  // }
   // document.getElementById("colorAddResult").innerHTML = "";
   // alert(first);
   // alert(userId);
