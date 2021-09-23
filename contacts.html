@@ -101,14 +101,21 @@
                     class="form-control"
                     id="search"
                     name="search"
+                    onfocus="turnAutoSearchOn();"
                   />
                   <!-- <script type="text/javascript">
-                      document.addEventListener('keypress', logKey);
-              
-                      function logKey(e) {
-                        searchContacts();
+                      autosearch = 1;
+                      function setAutoSearch() {
+                        autosearch = 0;
                       }
-                  </script> -->
+                      if (autosearch) {
+                        document.addEventListener('keypress', logKey);
+                        function logKey(e) {
+                          searchContacts();
+                        }
+                      }
+
+                  </script>                -->
                 </div>
                 <div>
                   <button type="submit" class="btn btn-primary btntime" onclick="searchContacts();">Search</button>
@@ -123,6 +130,7 @@
                     id="firstName"
                     name="firstName"
                     placeholder="First Name"
+                    onfocus="turnAutoSearchOff();"
                   />
                   <br/>
                   <input
@@ -131,6 +139,7 @@
                     id="lastName"
                     name="lastName"
                     placeholder="Last Name"
+                    onfocus="turnAutoSearchOff();"
                   />  
                   <br/> 
                   <input
@@ -139,6 +148,7 @@
                     id="number"
                     name="number"
                     placeholder="Number"
+                    onfocus="turnAutoSearchOff();"
                   />   
                   <br/>
                   <button type="submit" class="btn btn-primary btntime" onclick="addContact();">Add Contact</button>
