@@ -7,7 +7,7 @@ var lastName = "";
 var email = "";
 var userName = "";
 
-autosearch = 0;
+autosearch = 1;
 function turnAutoSearchOff() {
   autosearch = 0;
   document.removeEventListener("keypress", logKey);
