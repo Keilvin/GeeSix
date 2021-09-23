@@ -7,7 +7,7 @@ var lastName = "";
 var email = "";
 var userName = "";
 
-autosearch = 1;
+autosearch = 0;
 function turnAutoSearchOff() {
   autosearch = 0;
   document.removeEventListener("keypress", logKey);
@@ -64,7 +64,7 @@ function doLogin() {
 
         saveCookie();
         // alert(userId);
-        turnAutoSearchOn();
+        turnAutoSearchOff();
         window.location.href = "contacts.html";
       }
     };
