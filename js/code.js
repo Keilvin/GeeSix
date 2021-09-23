@@ -587,6 +587,7 @@ function editContact() {
         // document.getElementById("contactEditResult").innerHTML =
         //   "Contact has been edited";
         var jsonObject1 = JSON.parse(xhr1.responseText);
+
         // searchContacts2();
         if (first === "") {
           first = jsonObject1.results[1];
@@ -595,7 +596,7 @@ function editContact() {
           last = jsonObject1.results[2];
         }
         if (numberr === "") {
-          number = jsonObject1.results[3];
+          numberr = jsonObject1.results[3];
         }
         var sendSearch = "";
         sendSearch += first;
