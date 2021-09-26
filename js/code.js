@@ -284,8 +284,8 @@ function searchContacts() {
       if (this.readyState == 4 && this.status == 200) {
         var jsonObject = JSON.parse(xhr.responseText);
         if (jsonObject.results.length > 0) {
-          document.getElementById("contactSearchResult").innerHTML =
-            "Contacts have been retrieved";
+          // document.getElementById("contactSearchResult").innerHTML =
+          //   "Contacts have been retrieved";
 
           colorList += "<table class='table'>\n";
           colorList += "<thead>\n";
@@ -304,21 +304,21 @@ function searchContacts() {
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
             colorList += jsonObject.results[i];
             colorList += ");turnAutoSearchOff();'>";
-            colorList += "Edit";
+            colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
             colorList += "<button id='";
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
             colorList += jsonObject.results[i];
             i++;
             colorList += ");'>";
-            colorList += "Delete";
+            colorList += "<i class='fa fa-trash'></i> Delete";
             colorList += "</button>\n";
             colorList += "</span>";
             colorList +=
@@ -373,7 +373,7 @@ function searchContacts() {
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
               "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='deleteContact(";
-            colorList += ");' >Delete User</button>\n";
+            colorList += ");' >Delete Contact</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
@@ -433,8 +433,8 @@ function searchContacts2() {
       if (this.readyState == 4 && this.status == 200) {
         var jsonObject = JSON.parse(xhr.responseText);
         if (jsonObject.results.length > 0) {
-          document.getElementById("contactSearchResult").innerHTML =
-            "Contacts have been retrieved";
+          // document.getElementById("contactSearchResult").innerHTML =
+          //   "Contacts have been retrieved";
 
           colorList += "<table class='table'>\n";
           colorList += "<thead>\n";
@@ -453,21 +453,21 @@ function searchContacts2() {
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
             colorList += jsonObject.results[i];
             colorList += ");turnAutoSearchOff();'>";
-            colorList += "Edit";
+            colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
             colorList += "<button id='";
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
             colorList += jsonObject.results[i];
             i++;
             colorList += ");'>";
-            colorList += "Delete";
+            colorList += "<i class='fa fa-trash'></i> Delete";
             colorList += "</button>\n";
             colorList += "</span>";
             colorList +=
@@ -522,7 +522,7 @@ function searchContacts2() {
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
               "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='deleteContact(";
-            colorList += ");' >Delete User</button>\n";
+            colorList += ");' >Delete Contact</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
