@@ -28,6 +28,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--
     <style>
       body{
@@ -95,34 +96,83 @@
         <div class="card-header head1">Contacts Manager</div>
           <div class="card-body kard">
                 <div class="mb-1">
-                  <label for="search" class="form-label">Search Contacts</label>
-                  <input
+                  <label for="search" class="form-label">Search and Add Contacts</label>
+                  <!-- <input
                     type="text"
                     class="form-control"
                     id="search"
                     name="search"
                     onfocus="turnAutoSearchOn();"
-                  />
-                  <!-- <script type="text/javascript">
-                      autosearch = 1;
-                      function setAutoSearch() {
-                        autosearch = 0;
-                      }
-                      if (autosearch) {
-                        document.addEventListener('keypress', logKey);
-                        function logKey(e) {
-                          searchContacts();
-                        }
-                      }
+                  /> -->
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="search" name="search"  placeholder="Search Contacts.." aria-label="Recipient's username with two button addons" onfocus="turnAutoSearchOn();">
+                    <button class="btn btn-outline-secondary" type="submit" onclick="searchContacts();"><i class="fa fa-search"> Search</i></button>
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalAddContact"><i class="fa fa-plus"></i> Add</button>
+                  </div>
 
-                  </script>                -->
+                  <!-- Button trigger modal -->
+                  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalAddContact">
+                    Launch demo modal
+                  </button> -->
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalAddContact" tabindex="-1" aria-labelledby="exampleModalLabelAddContact" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabelAddContact">Add New Contact</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="mb-1">
+                            <label for="firstName" class="form-label">Add Contacts</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="firstName"
+                              name="firstName"
+                              placeholder="First Name"
+                              onfocus="turnAutoSearchOff();"
+                            />
+                            <br/>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="lastName"
+                              name="lastName"
+                              placeholder="Last Name"
+                              onfocus="turnAutoSearchOff();"
+                            />  
+                            <br/> 
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="number"
+                              name="number"
+                              placeholder="Number"
+                              onfocus="turnAutoSearchOff();"
+                            />   
+                            <br/>
+                            <!-- <button type="submit" class="btn btn-primary btntime" onclick="addContact();">Add Contact</button> -->
+                            <span id="added"></span>                                 
+                          </div>    
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" onclick="addContact();">Add Contact</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary btntime" onclick="searchContacts();">Search</button>
+                  <!-- <button type="submit" class="btn btn-primary btntime" onclick="searchContacts();">Search</button> -->
                   <span id="contactSearchResult"></span>
                   <p id="colorList"></p>
                 </div>
-                <div class="mb-1">
+
+                <!-- <div class="mb-1">
                   <label for="firstName" class="form-label">Add Contacts</label>
                   <input
                     type="text"
@@ -153,7 +203,7 @@
                   <br/>
                   <button type="submit" class="btn btn-primary btntime" onclick="addContact();">Add Contact</button>
                   <span id="added"></span>                                 
-                </div>              
+                </div>               -->
           </div>
             
         </div>
