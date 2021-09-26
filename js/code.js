@@ -187,8 +187,21 @@ function doLogout() {
   userId = 0;
   firstName = "";
   lastName = "";
-  document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-  window.location.href = "index.html";
+  email = "";
+  userName = "";
+  document.cookie =
+    "userName=" +
+    userName +
+    ",email=" +
+    email +
+    ",firstName=" +
+    firstName +
+    ",lastName=" +
+    lastName +
+    ",userId=" +
+    userId +
+    ";expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  window.location.href = "login.html";
 }
 
 function addContact() {
