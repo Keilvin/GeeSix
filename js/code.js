@@ -378,14 +378,14 @@ function searchContacts() {
             colorList +=
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-body'>\n";
+            colorList += "<div class='modal-body navisupp'>\n";
             colorList += "<p>Click Delete User To Confirm Deletion</p>";
             colorList += "</div>\n";
-            colorList += "<div class='modal-footer'>\n";
+            colorList += "<div class='modal-footer navi'>\n";
             colorList +=
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
-              "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='deleteContact(";
+              "<button type='submit' id='save' class='btn btn-primary' style = 'background-color: purple;' data-bs-dismiss='modal' onclick='deleteContact(";
             colorList += ");' >Delete Contact</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
