@@ -372,7 +372,7 @@ function searchContacts() {
               "<div class='modal fade' id='exampleModal2' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header'>\n";
+            colorList += "<div class='modal-header navi'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel2'>Delete Contact</h5>\n";
             colorList +=
