@@ -338,13 +338,13 @@ function searchContacts() {
               "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header'>\n";
+            colorList += "<div class='modal-header btntime'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel'>Edit Contact</h5>\n";
             colorList +=
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-body'>\n";
+            colorList += "<div class='modal-body kard'>\n";
             colorList += "<div class='mb-1'>\n";
             colorList +=
               "<label for='firstName' class='form-label'>Add Contacts</label>\n";
@@ -357,7 +357,7 @@ function searchContacts() {
             colorList += "<span id='contactAddResult'></span>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-footer'>\n";
+            colorList += "<div class='modal-footer btntime'>\n";
             colorList +=
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
