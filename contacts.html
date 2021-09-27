@@ -43,7 +43,7 @@
       #popup{
         width:100%;
         height: 100%;
-        background-color:rgb(100, 149, 237,0.7);
+        background-color:rgba(27, 40, 63, 0.5);
         position:absolute;
         top: 0;
         display: flex;
@@ -55,8 +55,7 @@
       #modal-content{
         width: 500px;
         height: 300px;
-        background-color:aquamarine;
-        opacity: 1;
+        /**background-color:aquamarine;**/
         border-radius:4px;
         text-align:center;
         padding: 20px;
@@ -64,8 +63,8 @@
       .close{
         position: absolute;
         
-        top: 27%;
-        right: 33%;
+        top: 31%;
+        right: 34%;
         /**
         top: 190px;
         right: 450px;
@@ -115,10 +114,13 @@
         </div>
       </div>
     </nav>
-    <div id = "popup">
+    <div id = "popup" style = "filter: drop-shadow(0 0 0.75rem #2d313b);">
       <div id = "modal-content">
+        <div class = "modal-header btntime">
+          <h5 class = "modal-title">Edit Contact</h5>
         <button class ="close" onclick = "sleeptime();">+</button>
-        <br/>
+        </div>
+        <div class ="modal-body kard">
       <input
                     type="text"
                     class="form-control"
@@ -142,9 +144,12 @@
                     name="numberEdit"
                     placeholder="Number"
                   />
-                  <br/>
+                </div>
+                <div class = "modal-footer btntime">
                   <button type="submit" class="btn btn-primary" onclick="sleeptime();editContact();turnAutoSearchOn();">Save Changes</button>
+                </div>
                 </div> 
+                
     </div>
     
     <div class="container mt-2">
