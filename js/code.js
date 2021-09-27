@@ -317,9 +317,9 @@ function searchContacts() {
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' onclick='setContactID(";
             colorList += jsonObject.results[i];
-            colorList += ");turnAutoSearchOff();'>";
+            colorList += ");turnAutoSearchOff();edittime();'>";
             colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
@@ -379,7 +379,7 @@ function searchContacts() {
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
             colorList += "<div class='modal-body navisupp'>\n";
-            colorList += "<p>Click Delete User To Confirm Deletion</p>";
+            colorList += "<p>Click Delete Contact To Confirm Deletion</p>";
             colorList += "</div>\n";
             colorList += "<div class='modal-footer navi'>\n";
             colorList +=
@@ -466,9 +466,9 @@ function searchContacts2() {
             colorList += jsonObject.results[i];
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='setContactID(";
+              "type='button' class='btn btn-outline-secondary' onclick='setContactID(";
             colorList += jsonObject.results[i];
-            colorList += ");turnAutoSearchOff();'>";
+            colorList += ");turnAutoSearchOff();edittime();'>";
             colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
@@ -528,7 +528,7 @@ function searchContacts2() {
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
             colorList += "<div class='modal-body'>\n";
-            colorList += "<p>Click Delete User To Confirm Deletion</p>";
+            colorList += "<p>Click Delete Contact To Confirm Deletion</p>";
             colorList += "</div>\n";
             colorList += "<div class='modal-footer'>\n";
             colorList +=
