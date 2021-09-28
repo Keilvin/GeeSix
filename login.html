@@ -18,80 +18,121 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link href="css\cooler.css" rel="stylesheet" />
+    <style>
+      header img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        filter: brightness(0.2);
+      }
 
+      section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Roboto", sans-serif;
+      }
+    </style>
     <title>Login Page</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light navisupp">
-        <div class="container-fluid navi">
-          <a class="navbar-brand" href="/">Kontax</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/contacts.html"
-                  >Contacts</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login.html" style="font-weight: bold">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/register.html">Register</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <div class="container mt-2" style = "filter: drop-shadow(15px 10px 4px #9eadd4);">
-      <div class="card text-left">
-        <div class="card-header navi">Login</div>
-          <div class="card-body navisupp">
-                <div class="mb-1">
-                  <label for="userName" class="form-label">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="userName"
-                    name="userName"
-                    
-                  />
-                </div>
-                <div class="mb-2">
-                  <label for="password" class="form-label">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                  />
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-primary" onclick="doLogin();"style="background-color: purple">Login</button>
-                  <span id="loginResult"></span>
-                </div>
-                
-          </div>
-            
+      <div class="container-fluid navi">
+        <a class="navbar-brand" href="/"
+          ><i class="fa fa-address-card-o"></i> Kontax</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/contacts.html"
+                >Contacts</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login.html" style="font-weight: bold"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register.html">Register</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <!-- <h4 class="alert alert-danger mt-4"></h4> -->
-    </div>
+    </nav>
+    <header>
+      <img
+        src="https://static3.depositphotos.com/1008491/239/i/950/depositphotos_2393447-stock-photo-pen-and-address-book.jpg"
+        alt="Placeholder-Image"
+      />
+      <section>
+        <!-- <h1>Heading</h1>
+        <h2>Just another tech blog.</h2>
+        <button>Read more.</button> -->
+        <div
+          class="container mt-2"
+          style="filter: drop-shadow(2px 2px 4px #9eadd4)"
+        >
+          <div class="card text-left">
+            <div class="card-header navi">Login</div>
+            <div class="card-body navisupp">
+              <div class="mb-1">
+                <label for="userName" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  name="userName"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-secondary"
+                  onclick="doLogin();"
+                  style="background-color: #d1b7fe; color: black"
+                >
+                  Login
+                </button>
+                <span id="loginResult"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- <h4 class="alert alert-danger mt-4"></h4> -->
   </body>
 </html>
