@@ -11,10 +11,11 @@ body {
   background-color: #7aa2e1;
 }
 .navi {
-  background-color: #d1b7fe;
+  /**background-color: #d1b7fe;**/
+  background: radial-gradient(#cebaf1, #a68ad6);
 }
 .navisupp {
-  background-color: #bc96ff;
+  background-color: #d4ceec;
 }
 .butt {
   padding: 5% 0% 5% 0%;
@@ -34,4 +35,7 @@ button,
 div,
 h3 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+html {
+  height: 100%;
 }
