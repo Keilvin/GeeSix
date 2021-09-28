@@ -7,6 +7,25 @@ var lastName = "";
 var email = "";
 var userName = "";
 
+function numberformat(number) {
+  var string = "";
+  for (let i = 1; i < 11; i++) {
+    if (i == 1) {
+      string += "(";
+    }
+    if (i == 4) {
+      string += ") ";
+    }
+
+    if (i == 7) {
+      string += "-";
+    }
+
+    string += number[i];
+  }
+  return string;
+}
+
 autosearch = 1;
 function turnAutoSearchOff() {
   autosearch = 0;
@@ -178,8 +197,8 @@ function readCookie() {
   if (userId < 0) {
     window.location.href = "login.html";
   } else {
-    document.getElementById("userName").innerHTML =
-      "Logged in as " + firstName + " " + lastName;
+    // document.getElementById("userName").innerHTML =
+    //   "Logged in as " + firstName + " " + lastName;
   }
 }
 
@@ -201,7 +220,14 @@ function doLogout() {
     ",userId=" +
     userId +
     ";expires = Thu, 01 Jan 1970 00:00:00 GMT";
-  window.location.href = "login.html";
+  window.location.href = "index.html";
+}
+
+function submitForm() {
+  var frm = document.getElementsByName("contact-form")[0];
+  // frm.submit();
+  frm.reset();
+  return false;
 }
 
 function addContact() {
@@ -227,7 +253,7 @@ function addContact() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("added").innerHTML = "Contact has been added";
+        // document.getElementById("added").innerHTML = "Contact has been added";
         searchContacts();
       }
     };
@@ -311,53 +337,76 @@ function searchContacts() {
           colorList += "</thead>\n";
           colorList += "<tbody>\n";
           for (var i = 0; i < jsonObject.results.length; i++) {
+            var idDisplay = jsonObject.results[i];
+            i++;
+            var firstNameDisplay = jsonObject.results[i];
+            i++;
+            var lastNameDisplay = jsonObject.results[i];
+            i++;
+            var numberDisplay = jsonObject.results[i];
             colorList += "<tr>\n";
             colorList += "<td>";
             colorList += "<button id='";
-            colorList += jsonObject.results[i];
+            colorList += idDisplay;
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' onclick='setContactID(";
-            colorList += jsonObject.results[i];
-            colorList += ");turnAutoSearchOff();edittime();'>";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal";
+            colorList += idDisplay;
+            colorList += "' onclick='setContactID(";
+            colorList += idDisplay;
+            colorList += ");turnAutoSearchOff();'>";
             colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
             colorList += "<button id='";
-            colorList += jsonObject.results[i];
+            colorList += idDisplay;
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
-            colorList += jsonObject.results[i];
-            i++;
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModalA' onclick='setContactID(";
+            colorList += idDisplay;
+            // i++;
             colorList += ");'>";
             colorList += "<i class='fa fa-trash'></i> Delete";
             colorList += "</button>\n";
             colorList += "</span>";
+            colorList += "<div class='modal fade' id='exampleModal";
+            colorList += idDisplay;
             colorList +=
-              "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
+              "' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header btntime'>\n";
+            colorList += "<div class='modal-header'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel'>Edit Contact</h5>\n";
             colorList +=
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-body kard'>\n";
+            colorList += "<div class='modal-body'>\n";
             colorList += "<div class='mb-1'>\n";
             colorList +=
               "<label for='firstName' class='form-label'>Add Contacts</label>\n";
             colorList +=
-              "<input type='text' class='form-control' id='firstNameEdit' name='firstNameEdit' placeholder='Edit First Name'/>\n";
+              "<input type='text' class='form-control' id='firstNameEdit";
+            colorList += idDisplay;
+            colorList += "' name='firstNameEdit' placeholder='";
+            colorList += firstNameDisplay;
+            colorList += "'/>\n";
             colorList +=
-              "<input type='text' class='form-control' id='lastNameEdit' name='lastNameEdit' placeholder='Edit Last Name'/>\n";
+              "<input type='text' class='form-control' id='lastNameEdit";
+            colorList += idDisplay;
+            colorList += "' name='lastNameEdit' placeholder='";
+            colorList += lastNameDisplay;
+            colorList += "'/>\n";
             colorList +=
-              "<input type='text' class='form-control' id='numberEdit' name='numberEdit' placeholder='Edit Number'/>\n";
+              "<input type='text' class='form-control' id='numberEdit";
+            colorList += idDisplay;
+            colorList += "' name='numberEdit' placeholder='";
+            colorList += numberDisplay;
+            colorList += "'/>\n";
             colorList += "<span id='contactAddResult'></span>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-footer btntime'>\n";
+            colorList += "<div class='modal-footer'>\n";
             colorList +=
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
@@ -369,10 +418,10 @@ function searchContacts() {
             colorList += "</div>\n";
 
             colorList +=
-              "<div class='modal fade' id='exampleModal2' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
+              "<div class='modal fade' id='exampleModalA' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header navi'>\n";
+            colorList += "<div class='modal-header'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel2'>Delete Contact</h5>\n";
             colorList +=
@@ -394,16 +443,16 @@ function searchContacts() {
 
             colorList += "</td>\n";
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += firstNameDisplay;
             // setSearch(jsonObject.results[i]);
             colorList += "</td>\n";
-            i++;
+            // i++;
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += lastNameDisplay;
             colorList += "</td>\n";
-            i++;
+            // i++;
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += numberformat(JSON.stringify(numberDisplay));
             colorList += "</td>\n";
             colorList += "</tr>\n";
             // if (i < jsonObject.results.length - 1) {
@@ -460,31 +509,42 @@ function searchContacts2() {
           colorList += "</thead>\n";
           colorList += "<tbody>\n";
           for (var i = 0; i < jsonObject.results.length; i++) {
+            var idDisplay = jsonObject.results[i];
+            i++;
+            var firstNameDisplay = jsonObject.results[i];
+            i++;
+            var lastNameDisplay = jsonObject.results[i];
+            i++;
+            var numberDisplay = jsonObject.results[i];
             colorList += "<tr>\n";
             colorList += "<td>";
             colorList += "<button id='";
-            colorList += jsonObject.results[i];
+            colorList += idDisplay;
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' onclick='setContactID(";
-            colorList += jsonObject.results[i];
-            colorList += ");turnAutoSearchOff();edittime();'>";
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal";
+            colorList += idDisplay;
+            colorList += "' onclick='setContactID(";
+            colorList += idDisplay;
+            colorList += ");turnAutoSearchOff();'>";
             colorList += "<i class='fa fa-pencil'></i> Edit";
             colorList += "</button>\n";
             colorList += "<span>";
             colorList += "<button id='";
-            colorList += jsonObject.results[i];
+            colorList += idDisplay;
             colorList += "'";
             colorList +=
-              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModal2' onclick='setContactID(";
-            colorList += jsonObject.results[i];
-            i++;
+              "type='button' class='btn btn-outline-secondary' data-bs-toggle='modal' data-bs-target='#exampleModalA' onclick='setContactID(";
+            colorList += idDisplay;
+            // i++;
             colorList += ");'>";
             colorList += "<i class='fa fa-trash'></i> Delete";
             colorList += "</button>\n";
             colorList += "</span>";
+            colorList += "<div class='modal fade' id='exampleModal";
+            colorList += idDisplay;
             colorList +=
-              "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
+              "' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
             colorList += "<div class='modal-header'>\n";
@@ -498,11 +558,23 @@ function searchContacts2() {
             colorList +=
               "<label for='firstName' class='form-label'>Add Contacts</label>\n";
             colorList +=
-              "<input type='text' class='form-control' id='firstNameEdit' name='firstNameEdit' placeholder='Edit First Name'/>\n";
+              "<input type='text' class='form-control' id='firstNameEdit";
+            colorList += idDisplay;
+            colorList += "' name='firstNameEdit' placeholder='";
+            colorList += firstNameDisplay;
+            colorList += "'/>\n";
             colorList +=
-              "<input type='text' class='form-control' id='lastNameEdit' name='lastNameEdit' placeholder='Edit Last Name'/>\n";
+              "<input type='text' class='form-control' id='lastNameEdit";
+            colorList += idDisplay;
+            colorList += "' name='lastNameEdit' placeholder='";
+            colorList += lastNameDisplay;
+            colorList += "'/>\n";
             colorList +=
-              "<input type='text' class='form-control' id='numberEdit' name='numberEdit' placeholder='Edit Number'/>\n";
+              "<input type='text' class='form-control' id='numberEdit";
+            colorList += idDisplay;
+            colorList += "' name='numberEdit' placeholder='";
+            colorList += numberDisplay;
+            colorList += "'/>\n";
             colorList += "<span id='contactAddResult'></span>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
@@ -518,7 +590,7 @@ function searchContacts2() {
             colorList += "</div>\n";
 
             colorList +=
-              "<div class='modal fade' id='exampleModal2' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
+              "<div class='modal fade' id='exampleModalA' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
             colorList += "<div class='modal-header'>\n";
@@ -527,14 +599,14 @@ function searchContacts2() {
             colorList +=
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-body'>\n";
+            colorList += "<div class='modal-body navisupp'>\n";
             colorList += "<p>Click Delete Contact To Confirm Deletion</p>";
             colorList += "</div>\n";
-            colorList += "<div class='modal-footer'>\n";
+            colorList += "<div class='modal-footer navi'>\n";
             colorList +=
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
-              "<button type='submit' id='save' class='btn btn-primary' data-bs-dismiss='modal' onclick='deleteContact(";
+              "<button type='submit' id='save' class='btn btn-primary' style = 'background-color: purple;' data-bs-dismiss='modal' onclick='deleteContact(";
             colorList += ");' >Delete Contact</button>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
@@ -543,16 +615,16 @@ function searchContacts2() {
 
             colorList += "</td>\n";
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += firstNameDisplay;
             // setSearch(jsonObject.results[i]);
             colorList += "</td>\n";
-            i++;
+            // i++;
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += lastNameDisplay;
             colorList += "</td>\n";
-            i++;
+            // i++;
             colorList += "<td>";
-            colorList += jsonObject.results[i];
+            colorList += numberformat(JSON.stringify(numberDisplay));
             colorList += "</td>\n";
             colorList += "</tr>\n";
             // if (i < jsonObject.results.length - 1) {
@@ -579,10 +651,13 @@ function searchContacts2() {
 }
 
 function editContact() {
-  var id = getContactID();
-  var first = document.getElementById("firstNameEdit").value;
-  var last = document.getElementById("lastNameEdit").value;
-  var numberr = document.getElementById("numberEdit").value;
+  var id = getContactID().toString();
+  var firstNameString = "firstNameEdit" + id;
+  var lastNameString = "lastNameEdit" + id;
+  var numberString = "numberEdit" + id;
+  var first = document.getElementById(firstNameString).value;
+  var last = document.getElementById(lastNameString).value;
+  var numberr = document.getElementById(numberString).value;
 
   var tmp1 = {
     id: id,
