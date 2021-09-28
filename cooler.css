@@ -1,5 +1,6 @@
 body {
-  background-color: #bdd0ff;
+  background: radial-gradient(#cdabf5, #7268a8);
+  height: 100%;
 }
 .kard {
   background-color: #a8d0e0;
@@ -12,10 +13,10 @@ body {
 }
 .navi {
   /**background-color: #d1b7fe;**/
-  background: radial-gradient(#cebaf1, #a68ad6);
+  background: radial-gradient(#efbaf1, #bc96ff);
 }
 .navisupp {
-  background-color: #d4ceec;
+  background-color: #b198c9;
 }
 .butt {
   padding: 5% 0% 5% 0%;
