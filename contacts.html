@@ -29,62 +29,46 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script>
-      function edittime()
-      {
-        document.getElementById('popup').style.visibility = 'visible';
-      }
-      function sleeptime()
-      {
-        document.getElementById('popup').style.visibility = 'hidden';
-      }
-    </script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+    <!--
+      
     <style>
-      #popup{
-        width:100%;
-        height: 100%;
-        background-color:rgb(100, 149, 237,0.7);
-        position:absolute;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items:center;
-        z-index: 1;
-        visibility: hidden;
+      body{
+        background-color: #BDD0FF;
       }
-      #modal-content{
-        width: 500px;
-        height: 300px;
-        background-color:aquamarine;
-        opacity: 1;
-        border-radius:4px;
-        text-align:center;
-        padding: 20px;
+      .kard{
+        background-color: #A8D0E0
       }
-      .close{
-        position: absolute;
-        
-        top: 27%;
-        right: 33%;
-        /**
-        top: 190px;
-        right: 450px;
-        **/
-        font-size: 42px;
-        transform: rotate(45deg);
-        cursor: pointer;
-        background: transparent;
-        border: none;
+      .head1{
+        background-color: #C7F6FF;
+      }
+      .btntime
+      {
+        background-color:#7AA2E1;
+      }
+      .navi
+      {
+        background-color:#D1B7FE;
+      }
+      .navisupp
+      {
+        background-color:#BC96FF;
       }
       </style>
+      -->
     
 
     <title>Contacts Page</title>
   </head>
-  <body>
+  <body onload="searchContacts();">
     <nav class="navbar navbar-expand-lg navbar-light navisupp">
       <div class="container-fluid navi">
-        <a class="navbar-brand" href="/">Kontax</a>
+        <a class="navbar-brand" href="/"
+        ><i class="fa fa-address-card-o"></i> Kontax</a
+      >
         <button
           class="navbar-toggler"
           type="button"
@@ -106,7 +90,7 @@
             </li>
             <li class="nav-item">
               <!-- <a class="nav-link" href="/login.html">Login</a> -->
-              <a class="nav-link" href="#" onclick="doLogout();"><i class="fa fa-sign-out"> Log out</i></a>
+              <a class="nav-link" href="#" onclick="doLogout();"><i class="fa fa-sign-out"></i> Log out</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" href="/register.html">Register</a>
@@ -114,42 +98,10 @@
           </ul>
         </div>
       </div>
-    </nav>
-    <div id = "popup">
-      <div id = "modal-content">
-        <button class ="close" onclick = "sleeptime();">+</button>
-        <br/>
-      <input
-                    type="text"
-                    class="form-control"
-                    id="firstNameEdit"
-                    name="firstNameEdit"
-                    placeholder="First Name"
-                  />
-                  <br/>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="lastNameEdit"
-                    name="lastNameEdit"
-                    placeholder="Last Name"
-                  />  
-                  <br/> 
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="numberEdit"
-                    name="numberEdit"
-                    placeholder="Number"
-                  />
-                  <br/>
-                  <button type="submit" class="btn btn-primary" onclick="sleeptime();editContact();turnAutoSearchOn();">Save Changes</button>
-                </div> 
-    </div>
-    
+    </nav>  
     <div class="container mt-2">
       <div class="card text-left">
-        <div class="card-header head1">Contacts Manager</div>
+        <div class="card-header head1 top">Contacts Manager</div>
           <div class="card-body kard">
                 <div class="mb-1">
                   <label for="search" class="form-label">Search and Add Contacts</label>
@@ -215,7 +167,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" onclick="addContact();">Add Contact</button>
+                          <button type="submit" class="btn btn-primary" onclick="addContact();" data-bs-dismiss="modal">Add Contact</button>
                         </div>
                       </div>
                     </div>
@@ -264,7 +216,6 @@
             
         </div>
       </div>
-      <!--<button type="submit" class="btn btn-primary btntime" onclick="edittime();">Wake up</button>-->
       <!-- <h4 class="alert alert-danger mt-4"></h4> -->
     </div>
   </body>
