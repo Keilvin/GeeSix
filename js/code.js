@@ -375,13 +375,13 @@ function searchContacts() {
               "' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header'>\n";
+            colorList += "<div class='modal-header navi'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel'>Edit Contact</h5>\n";
             colorList +=
               "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-body'>\n";
+            colorList += "<div class='modal-body navisupp'>\n";
             colorList += "<div class='mb-1'>\n";
             colorList +=
               "<label for='firstName' class='form-label'>Add Contacts</label>\n";
@@ -390,23 +390,23 @@ function searchContacts() {
             colorList += idDisplay;
             colorList += "' name='firstNameEdit' placeholder='";
             colorList += firstNameDisplay;
-            colorList += "'/>\n";
+            colorList += "'/><br/>\n";
             colorList +=
               "<input type='text' class='form-control' id='lastNameEdit";
             colorList += idDisplay;
             colorList += "' name='lastNameEdit' placeholder='";
             colorList += lastNameDisplay;
-            colorList += "'/>\n";
+            colorList += "'/><br/>\n";
             colorList +=
               "<input type='text' class='form-control' id='numberEdit";
             colorList += idDisplay;
             colorList += "' name='numberEdit' placeholder='";
             colorList += numberDisplay;
-            colorList += "'/>\n";
+            colorList += "'/><br/>\n";
             colorList += "<span id='contactAddResult'></span>\n";
             colorList += "</div>\n";
             colorList += "</div>\n";
-            colorList += "<div class='modal-footer'>\n";
+            colorList += "<div class='modal-footer navi'>\n";
             colorList +=
               "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>\n";
             colorList +=
@@ -421,7 +421,7 @@ function searchContacts() {
               "<div class='modal fade' id='exampleModalA' tabindex='-1' aria-labelledby='exampleModalLabel2' aria-hidden='true'>\n";
             colorList += "<div class='modal-dialog'>\n";
             colorList += "<div class='modal-content'>\n";
-            colorList += "<div class='modal-header'>\n";
+            colorList += "<div class='modal-header navi'>\n";
             colorList +=
               "<h5 class='modal-title' id='exampleModalLabel2'>Delete Contact</h5>\n";
             colorList +=
