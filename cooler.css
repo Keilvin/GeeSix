@@ -1,6 +1,5 @@
 body {
-  background: radial-gradient(#cdabf5, #7268a8);
-  height: 100%;
+  background-color: #bdd0ff;
 }
 .kard {
   background-color: #a8d0e0;
@@ -12,11 +11,10 @@ body {
   background-color: #7aa2e1;
 }
 .navi {
-  /**background-color: #d1b7fe;**/
-  background: radial-gradient(#efbaf1, #bc96ff);
+  background-color: #d1b7fe;
 }
 .navisupp {
-  background-color: #b198c9;
+  background-color: #bc96ff;
 }
 .butt {
   padding: 5% 0% 5% 0%;
@@ -26,17 +24,14 @@ body {
   border-color: #ad98d3;
 }
 /**
-a:hover {
-  background-color: #efa3fa;
-}
-**/
+  a:hover {
+    background-color: #efa3fa;
+  }
+  **/
 
 p,
 button,
 div,
 h3 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-html {
-  height: 100%;
 }
